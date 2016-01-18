@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/15 10:47:50 by fhuang            #+#    #+#             */
-/*   Updated: 2016/01/15 12:16:45 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/01/18 19:42:51 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,15 @@
 
 
 #include <stdio.h>
+
+typedef struct			s_img
+{
+	void	*img;
+	char	*addr;
+	int		bpb;
+	int		size_line;
+	int		endian;
+}						t_img;
 
 typedef struct			s_env
 {
