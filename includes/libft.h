@@ -6,7 +6,7 @@
 /*   By: fhuang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 11:48:08 by fhuang            #+#    #+#             */
-/*   Updated: 2015/12/11 13:31:50 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/01/19 19:09:08 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void			ft_putstr_fd(char const *s, int fd);
 void			ft_putendl_fd(char const *s, int fd);
 void			ft_putnbr_fd(int n, int fd);
 size_t			ft_strlen(char const *s);
+size_t			ft_tablen(char **tab);
 char			*ft_strcpy(char *dst, const char *src);
 char			*ft_strncpy(char *dst, const char *src, size_t n);
 char			*ft_strcat(char *s1, const char *s2);
@@ -79,10 +80,12 @@ int				ft_strnequ(char const *s1, char const *s2, size_t n);
 char			*ft_strnew(size_t size);
 void			ft_strdel(char **as);
 void			ft_strclr(char *s);
+void			ft_tabfree(char **tab);
 void			ft_striter(char *s, void (*f)(char *));
 void			ft_striteri(char *s, void (*f)(unsigned int, char *));
 char			*ft_strmap(char const *s, char (*f)(char));
 char			*ft_strmapi(char const *s, char (*f)(unsigned int, char));
+int				*ft_tabatoi(char **tab);
 int				ft_atoi(const char *str);
 char			*ft_itoa(int n);
 unsigned int	ft_power_pos(unsigned int n, unsigned int p);
