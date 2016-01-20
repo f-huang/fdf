@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/15 10:47:50 by fhuang            #+#    #+#             */
-/*   Updated: 2016/01/19 18:44:00 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/01/20 18:39:31 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,10 @@
 
 
 #include <stdio.h>
+
+# define WIDTH 1024
+# define HEIGHT 1024
+
 
 typedef struct			s_read
 {

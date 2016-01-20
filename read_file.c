@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/15 12:13:54 by fhuang            #+#    #+#             */
-/*   Updated: 2016/01/19 19:31:53 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/01/20 18:39:20 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int			read_line(char **av)
 	}
 	return (1);
 }
-
+/*
 int		main(int ac, char **av)
 {
 	if (read_line(av))
@@ -76,4 +76,4 @@ int		main(int ac, char **av)
 	else
 		ft_putnbrendl(ac - ac);
 	return (0);
-}
+}*/
