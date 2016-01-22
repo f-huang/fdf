@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/15 10:47:50 by fhuang            #+#    #+#             */
-/*   Updated: 2016/01/20 18:39:31 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/01/22 12:17:40 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 typedef struct			s_read
 {
 	int		i;
+	int		n_line;
 	int		**data;
 }						t_read;
 
@@ -53,4 +54,6 @@ typedef struct			s_env
 	void	*mlx;
 }						t_env;
 
+
+int						read_line(t_read *r, char **av);
 #endif

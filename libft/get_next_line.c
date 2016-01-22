@@ -6,7 +6,7 @@
 /*   By: fhuang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/11 16:15:35 by fhuang            #+#    #+#             */
-/*   Updated: 2016/01/14 23:07:02 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/01/22 11:44:11 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_list	*get_fd(t_list **lst, int const fd)
 int		read_fd(t_list *lst, int const fd)
 {
 	int		ret;
-	int 	save;
+	int		save;
 	char	buf[BUFF_SIZE + 1];
 	char	*tmp;
 
@@ -96,7 +96,10 @@ int		update_lfo(t_list **lst, char **line, t_list *tmp, int ret)
 	{
 		if ((*line = ft_strdup(lfo)) == 0)
 			return (-1);
-		return (!ret ? free_list(lst, tmp) : 1);
+		if ((!ret && !ft_strlen(lfo)))
+			return (free_list(lst, tmp));
+		ft_strclr((((t_gnl*)(tmp->content))->lfo));
+		return (1);
 	}
 	len = ft_strlen(lfo) - ft_strlen(ft_strstr(lfo, "\n"));
 	if ((*line = ft_strndup(lfo, len)))
@@ -114,50 +117,14 @@ int		get_next_line(int const fd, char **line)
 
 	if (fd < 0 || BUFF_SIZE <= 0 || line == NULL)
 		return (-1);
-	if (lst == NULL )
+	if (lst == NULL)
 	{
 		if (!(lst = (t_list**)malloc(sizeof(t_list*))))
 			return (-1);
 		*lst = NULL;
-		//tmp = init_gnl(*lst, fd);
-		//	tmp = *lst;
 	}
-//	else
-		tmp = get_fd(lst, fd);
+	tmp = get_fd(lst, fd);
 	if ((ret = read_fd(tmp, fd)) == -1)
 		return (-1);
 	return (update_lfo(lst, line, tmp, ret));
 }
-/*
-#include <fcntl.h>
-#include <stdio.h>
-int		main()
-{
-int		gnl = 0;
-char	*l;
-int		fd;
-
-l = NULL;
-fd = open("fd3.txt", O_RDONLY);
-
-
-int		out;
-int		p[2];
-int		fd1;
-out = dup(1);
-pipe(p);
-
-fd1 = 1;
-dup2(p[1], fd1);
-ft_putstr_fd("abcd\n\n", fd1);
-close(p[1]);
-dup2(out, fd1);
-
-while ((gnl = get_next_line(p[0], &l)))
-{
-printf("GNL :%i\n", gnl);
-printf("LINE :%s\n\n", l);
-}
-close(fd);
-return 0;
-}*/

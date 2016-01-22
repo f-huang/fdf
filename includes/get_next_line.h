@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/07 13:57:45 by fhuang            #+#    #+#             */
-/*   Updated: 2016/01/15 10:40:32 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/01/22 12:26:42 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define BUFF_SIZE  1
+# define BUFF_SIZE  2056
 
 int				get_next_line(int const fd, char **line);
 

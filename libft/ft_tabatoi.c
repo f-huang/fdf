@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/19 15:54:42 by fhuang            #+#    #+#             */
-/*   Updated: 2016/01/19 19:32:41 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/01/22 11:52:28 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ int		*ft_tabatoi(char **tab)
 	i = 0;
 	if (!(ret = (int*)ft_memalloc(sizeof(int*))))
 		return (NULL);
-	ret[i] = ft_tablen(tab);
 	while (tab[i])
 	{
 		atoi = ft_atoi(tab[i]);
-		ret[++i] = atoi;
+		ret[i] = atoi;
+		i++;
 	}
 	return (ret);
 }
