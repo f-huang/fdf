@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/15 12:13:54 by fhuang            #+#    #+#             */
-/*   Updated: 2016/01/22 13:52:03 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/01/22 15:32:01 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,12 @@ int			*tabatoi(char **tab, t_read *r)
 	int		atoi;
 	int		*ret;
 
-	if (!(ret = (int*)ft_memalloc(sizeof(int))))
+	if (!(ret = (int*)ft_memalloc(sizeof(int) * (ft_tablen(tab) + 2))))
 		return (0);
 	i = 0;
-	ret[i] = r->n_line++;
+	ret[i] = r->n_line;
 	ret[++i] = ft_tablen(tab);
+	r->len_line[r->n_line++] = ft_tablen(tab);
 	j = 0;
 	while (tab[j])
 	{
@@ -48,27 +49,26 @@ int			parse_line(char *line)
 	return (1);
 }
 
-int			cut_line(char *line, t_read *r)
+int			cut_line(char *line, t_read **r)
 {
 	char	**tab;
 	int		*tabi;
 
 	if (parse_line(line) && (tab = ft_strsplit(line, ' ')))
 		{
-			if ((tabi = tabatoi(tab, r)))
+			if ((tabi = tabatoi(tab, (*r))))
 			{
-				if (!(r->data[r->i] = (int*)ft_memalloc(sizeof(int) * ft_tablen(tab))))
+				if (!((*r)->data[(*r)->i] = (int*)ft_memalloc(sizeof(int) * ft_tablen(tab))))
 					return (0);
-				r->data[r->i] = tabi;
-				r->i++;
+				(*r)->data[(*r)->i] = tabi;
+				(*r)->i++;
 				return (1);
 			}
 			else{
-				printf("HERE\n");
-				fflush(stdout);
 				ft_tabfree(tab);
 			}
 		}
+	
 	return (0);
 }
 
@@ -81,6 +81,8 @@ int			read_line(t_read *r, char **av)
 	fd = open(av[1], O_RDONLY);
 	if (!(r->data = (int**)ft_memalloc(sizeof(int*) * 1000)))
 		return (0);
+	if (!(r->len_line = (int*)ft_memalloc(sizeof(int) * 1000)))
+		return (0);
 	r->i = 0;
 	r->n_line = 0;
 	while ((gnl = get_next_line(fd, &line)))
@@ -88,8 +90,9 @@ int			read_line(t_read *r, char **av)
 		printf("GNL : %i\n", gnl);
 		if (gnl == -1)
 			return (0);
-		if (!(cut_line(line, r)))
+		if (!(cut_line(line, &r)))
 			return (0);
+		printf("NB DE LINE : %i\n", r->n_line);
 	}
 	return (1);
 }

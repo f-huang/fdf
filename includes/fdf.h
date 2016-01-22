@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/15 10:47:50 by fhuang            #+#    #+#             */
-/*   Updated: 2016/01/22 12:17:40 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/01/22 14:39:31 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct			s_read
 {
 	int		i;
 	int		n_line;
+	int		*len_line;
 	int		**data;
 }						t_read;
 
