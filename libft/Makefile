@@ -6,7 +6,7 @@
 #    By: fhuang <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/27 16:52:41 by fhuang            #+#    #+#              #
-#    Updated: 2016/01/19 18:41:54 by fhuang           ###   ########.fr        #
+#    Updated: 2016/01/25 14:39:40 by fhuang           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -91,7 +91,7 @@ SRC = ft_memset.c	\
 
 OBJ = $(SRC:%.c=%.o)
 
-HEADER_PATH = -I ../includes/
+HEADER_PATH = -I ./includes/
 
 CFLAGS = -c -Wall -Wextra -Werror
 

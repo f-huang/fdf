@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/15 10:47:50 by fhuang            #+#    #+#             */
-/*   Updated: 2016/01/22 14:39:31 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/01/25 17:15:58 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,11 @@
 
 #include <stdio.h>
 
-# define WIDTH 1024
-# define HEIGHT 1024
-
+# define SIZE_X 1024
+# define SIZE_Y 1024
+# define WIDTH 500
+# define HEIGHT 500
+# define SPACE 15
 
 typedef struct			s_read
 {
@@ -55,6 +57,7 @@ typedef struct			s_env
 	void	*mlx;
 }						t_env;
 
+int						read_file(int fd, t_read *r);
+int						init_env(t_read *r);
 
-int						read_line(t_read *r, char **av);
 #endif

@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tabatoi.c                                       :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/19 15:54:42 by fhuang            #+#    #+#             */
-/*   Updated: 2016/01/25 15:14:01 by fhuang           ###   ########.fr       */
+/*   Created: 2015/12/07 13:57:45 by fhuang            #+#    #+#             */
+/*   Updated: 2016/01/25 14:34:56 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-int		*ft_tabatoi(char **tab)
+# include "libft.h"
+# include <stdlib.h>
+# include <unistd.h>
+
+# define BUFF_SIZE  2056
+
+int				get_next_line(int const fd, char **line);
+
+typedef struct	s_gnl
 {
-	int		i;
-	int		atoi;
-	int		*ret;
+	int		fd;
+	char	*lfo;
+}				t_gnl;
 
-	i = 0;
-	if (!(ret = (int*)ft_memalloc(sizeof(int) * ft_tablen(tab))))
-		return (NULL);
-	while (tab[i])
-	{
-		atoi = ft_atoi(tab[i]);
-		ret[i] = atoi;
-		i++;
-	}
-	return (ret);
-}
+#endif
