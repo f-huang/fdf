@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/15 12:13:54 by fhuang            #+#    #+#             */
-/*   Updated: 2016/01/22 15:32:01 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/01/23 14:46:36 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,12 +87,10 @@ int			read_line(t_read *r, char **av)
 	r->n_line = 0;
 	while ((gnl = get_next_line(fd, &line)))
 	{
-		printf("GNL : %i\n", gnl);
 		if (gnl == -1)
 			return (0);
 		if (!(cut_line(line, &r)))
 			return (0);
-		printf("NB DE LINE : %i\n", r->n_line);
 	}
 	return (1);
 }
