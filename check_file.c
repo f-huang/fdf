@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/25 14:53:49 by fhuang            #+#    #+#             */
-/*   Updated: 2016/01/25 17:15:56 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/01/28 11:59:28 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,14 @@ int		read_file(int fd, t_read *r)
 	r->n_line = 0;
 	while ((gnl = get_next_line(fd, &line)))
 	{
-		if (gnl == -1 || !(check_line(line))){
-			printf("HERE\n");
+		if (gnl == -1 || !(check_line(line)))
+		{
+			printf("GNL || FILE CONTENT\n");
 			return (0);
 		}
 		if (!(line_to_2dint(&r, line)))
 		{
-			printf("NOPE\n");
+			printf("HERE\n");
 			return (0);
 		}
 		if (r->data[0] == NULL)

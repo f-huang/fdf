@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/25 15:58:25 by fhuang            #+#    #+#             */
-/*   Updated: 2016/01/25 17:15:53 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/01/28 14:40:17 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,32 @@ void	draw(t_img *img, int x1, int x2, int y)
 			i++;
 			x1 += 4;
 		}
+	}
+}
+
+void	line(t_img *img, int x1, int y1, int x2, int y2)
+{
+	double		a;
+	double		b;
+	int			x;
+	int			y;
+
+//	if (y2 == y1)
+//		ver_line(img, x1, x2);
+	a = 0;
+	if (x2 != x1)
+		a = (double)(y2 - y1) / (double)(x2 - x1);
+	b = (double)((y1 - a * x1));
+	printf (" y = %fx + %f\n" ,a , b);
+	x = 0;
+	int i = 0;
+	while (i < 20)
+	{
+		y = a * i + b;
+		printf("X : %i -- Y : %i\n", x, y);
+		img->addr[y * img-> size_line + x] = 255;
+		x += 4;
+		i++;
 	}
 }
 
@@ -73,12 +99,13 @@ int		init_env(t_read *r)
 		printf("null\n");
 	if (r->data[0] == NULL)
 		printf("IO\n");
+	line(&img, 5, 2, 6, 30);
 //	get_data(r, &img);
 //	draw(&img, 0, 0 ,5);
 	
 	
 	//////////////////////////////////////////////////////////////////////////
-	mlx_put_image_to_window(env.mlx, env.win, img.img, 10, 300);
+	mlx_put_image_to_window(env.mlx, env.win, img.img, 10, 10);
 	mlx_key_hook(env.win, exit_key, &env);
 	mlx_loop(env.mlx);
 	return (1);
