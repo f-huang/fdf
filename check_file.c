@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/25 14:53:49 by fhuang            #+#    #+#             */
-/*   Updated: 2016/01/28 11:59:28 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/01/28 17:11:37 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int		line_to_2dint(t_read **r, char *line)
 		return (0);
 	if (!(*r)->data && !((*r)->data = (int**)malloc(sizeof(int*) * ft_tablen(tab))))
 		return (0);
+	printf("TABLEN :%zu\n", ft_tablen(tab));
 	if (!((*r)->data[(*r)->i] = ft_tabatoi(tab)))
 		return (0);
 	if (!(*r)->len_line && !((*r)->len_line = (int*)malloc(sizeof(int) * ft_strlen(line))))
