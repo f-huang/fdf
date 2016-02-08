@@ -6,13 +6,27 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/25 14:53:49 by fhuang            #+#    #+#             */
-/*   Updated: 2016/01/28 17:11:37 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/02/08 17:52:41 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int		check_line(char *line)
+static int		count_n(int nb)
+{
+	int		n;
+
+	n = 1;
+	while (nb / 10)
+	{
+		nb /= 10;
+		n++;
+	}
+	return (n);
+}
+
+
+static int		check_line(char *line)
 {
 	int		i;
 
@@ -26,26 +40,60 @@ int		check_line(char *line)
 	return (1);
 }
 
-int		line_to_2dint(t_read **r, char *line)
+static int		line_to_2dint(t_read **r, char *line)
 {
 	char	**tab;
 
 	if (!(tab = ft_strsplit(line, ' ')))
 		return (0);
-	if (!(*r)->data && !((*r)->data = (int**)malloc(sizeof(int*) * ft_tablen(tab))))
+	if (!((*r)->data = (int**)ft_realloc((*r)->data, sizeof(int*) * ++(*r)->n_line)))
 		return (0);
-	printf("TABLEN :%zu\n", ft_tablen(tab));
 	if (!((*r)->data[(*r)->i] = ft_tabatoi(tab)))
 		return (0);
-	if (!(*r)->len_line && !((*r)->len_line = (int*)malloc(sizeof(int) * ft_strlen(line))))
+	
+/*
+	int		j  =0 ;
+	while (j < ft_tablen(tab))
+	{
+		printf("%i    ", (*r)->data[0][j]);
+		j++;
+	}
+	printf("\n ---------------\n");
+*/
+
+
+
+	if (!(*r)->len_line && !((*r)->len_line = (int*)ft_memalloc(sizeof(int) * count_n(ft_tablen(tab)))))
 		return (0);
-	(*r)->len_line[(*r)->i] = ft_strlen(line);
-	(*r)->n_line++;
+	(*r)->len_line[(*r)->i] = ft_tablen(tab);
+//	(*r)->n_line++;
 	if ((*r)->i > 0 && (*r)->len_line[(*r)->i] != (*r)->len_line[(*r)->i - 1])
 		return (0);
 	(*r)->i++;
 	return (1);
 }
+
+static int		print_data(t_read *r)
+{
+	int		i;
+	int		j;
+
+	j = 0;
+	while (j < r->n_line)
+	{
+		i = 0;
+		while (i < r->len_line[j])
+		{
+			printf("%i ", r->data[j][i]);
+			i++;
+		}
+		printf("\n");
+		j++;
+	}
+	return (0);
+}
+
+
 
 int		read_file(int fd, t_read *r)
 {
@@ -66,11 +114,7 @@ int		read_file(int fd, t_read *r)
 			printf("HERE\n");
 			return (0);
 		}
-		if (r->data[0] == NULL)
-		{
-			printf("NOOO\n");
-			return (0);
-		}
 	}
+	print_data(r);
 	return (1);
 }

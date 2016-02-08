@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/25 15:58:25 by fhuang            #+#    #+#             */
-/*   Updated: 2016/01/28 17:12:17 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/02/08 17:55:04 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,11 @@
 
 int		exit_key(int keycode, t_env *env)
 {
+	printf("keycode :%i\n", keycode);
 	if (env)
 		if (keycode == 53)
 			exit(0);
-	printf("keycode :%i\n", keycode);
 	return (0);
-}
-
-void	draw(t_img *img, int x1, int x2, int y)
-{
-	int		i;
-
-	if (x1 == x2)
-	{
-		i = 0;
-		while (i < SPACE)
-		{
-			img->addr[y * img->size_line + x1] = 255;
-			i++;
-			x1 += 4;
-		}
-	}
 }
 
 void	line(t_img *img, int x1, int y1, int x2, int y2)
@@ -53,36 +37,18 @@ void	line(t_img *img, int x1, int y1, int x2, int y2)
 //	printf (" y = %fx + %f\n" ,a , b);
 	x = 0;
 	int i = 0;
-	while (i < SPACE)
+	while (i < 500)
 	{
 		y = a * i + b;
 //		printf("X : %i -- Y : %i\n", x, y);
-		img->addr[y * img-> size_line + x] = 255;
+		img->addr[y * img->size_line + x] = 255;
 		x += 4;
 		i++;
 	}
 }
 
-void	horiz_line(t_img *img, int x1, int x2, int y)
-{
-	int		i;
-
-	i = 0;
-	while (i < SPACE)
-	{
-		if (x1 <= x2)
-		{
-			line(img, x1, x2, y, y - x2);
-		}
-		else if (x1 > x2)
-		{
-			line(img, x1, x2, y, y + x2);
-		}
-		i++;
-	}
-}
-
-
+// BOUCLE
+/*
 void	get_data(t_read *r, t_img *img)
 {
 	int		x;
@@ -94,13 +60,12 @@ void	get_data(t_read *r, t_img *img)
 		x = 0;
 		while (x < r->len_line[y])
 		{
-			horiz_line(img, r->data[y][x], r->data[y][x + 1], y);
 			x++;
 		}
 		y++;
 	}
 }
-
+*/
 int		init_env(t_read *r)
 {
 	t_img		img;
@@ -115,13 +80,8 @@ int		init_env(t_read *r)
 	img.addr = mlx_get_data_addr(img.img, &img.bpb, &img.size_line, &img.endian);
 	
 	//////////////////////////////////////////////////////////////////////////
-	if (r->data == NULL)	
-		printf("null\n");
-	if (r->data[0] == NULL)
-		printf("IO\n");
-//	line(&img, 5, 2, 6, 30);
-	get_data(r, &img);
-//	draw(&img, 0, 0 ,5);
+	if (r)
+	line(&img, 0, 0, 30, 30);
 	
 	
 	//////////////////////////////////////////////////////////////////////////
