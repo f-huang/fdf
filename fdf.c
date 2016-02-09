@@ -6,16 +6,16 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/25 15:58:25 by fhuang            #+#    #+#             */
-/*   Updated: 2016/02/08 17:55:04 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/02/09 12:31:40 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int		exit_key(int keycode, t_env *env)
+int		exit_key(int keycode, t_env *e)
 {
 	printf("keycode :%i\n", keycode);
-	if (env)
+	if (e)
 		if (keycode == 53)
 			exit(0);
 	return (0);
@@ -53,6 +53,8 @@ void	get_data(t_read *r, t_img *img)
 {
 	int		x;
 	int		y;
+	t_coord c1;
+	t_coord c2;
 
 	y = 0;
 	while (y < r->n_line)
@@ -60,33 +62,75 @@ void	get_data(t_read *r, t_img *img)
 		x = 0;
 		while (x < r->len_line[y])
 		{
+			c1.x = x;
+			c1.y = y;
+			c1.z = r->data[y][x];
+			c2.x = x + 1;
+			c2.y = y;
+			c2.z = r->data[y][x + 1];
 			x++;
 		}
 		y++;
 	}
 }
+
+
+
+
+void	draw_line(t_coord *c1, t_coord *c2)
+{
+	//if (x1->z == z2->z) //TRAIT VERT OU HOR
+		//VERT SI x1-> x == x2-> x
+		//HOR SI x1->y == x2->y
+		//
+
+	//SINON
+		//x1->z < x2->z ----------- TRAIT / ------------ y--
+		//" ""  > " " "" ------------ TRAIT \---------  y++
+
+	if (c1->z == c2->z)
+	{
+		if (c1->x == c2->x)
+			//Trait VERT
+		else if (c1->y == c2->y)
+			//Trait HOR
+	}
+	else
+
+
+
+}
 */
+
+
+
+
+
+
+
+
+
+
 int		init_env(t_read *r)
 {
 	t_img		img;
-	t_env		env;
+	t_env		e;
 
-	if (!(env.mlx = mlx_init()))
+	if (!(e.mlx = mlx_init()))
 		return (0);
-	if (!(env.win = mlx_new_window(env.mlx, SIZE_X, SIZE_Y, "MLX")))
+	if (!(e.win = mlx_new_window(e.mlx, SIZE_X, SIZE_Y, "MLX")))
 		return (0);
-	if (!(img.img = mlx_new_image(env.mlx, WIDTH, HEIGHT)))
+	if (!(img.img = mlx_new_image(e.mlx, WIDTH, HEIGHT)))
 		return (0);
 	img.addr = mlx_get_data_addr(img.img, &img.bpb, &img.size_line, &img.endian);
 	
 	//////////////////////////////////////////////////////////////////////////
 	if (r)
-	line(&img, 0, 0, 30, 30);
-	
+		line(&img, 0,0, 2, 1);
 	
 	//////////////////////////////////////////////////////////////////////////
-	mlx_put_image_to_window(env.mlx, env.win, img.img, 30, 40);
-	mlx_key_hook(env.win, exit_key, &env);
-	mlx_loop(env.mlx);
+	mlx_put_image_to_window(e.mlx, e.win, img.img, 30, 40);
+	mlx_key_hook(e.win, exit_key, &e);
+	mlx_loop(e.mlx);
 	return (1);
 }
