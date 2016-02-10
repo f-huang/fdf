@@ -6,25 +6,16 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/25 14:51:46 by fhuang            #+#    #+#             */
-/*   Updated: 2016/02/09 13:23:44 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/02/10 18:19:33 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int		error(char *str)
+void		error_exit(char *str)
 {
-	if (!ft_strcmp(str, "file"))
-	{
-		ft_putendl("Fichier invalide");
-		return (0);
-	}
-	else if (!ft_strcmp(str, "env"))
-	{
-		ft_putendl("Env invalide");
-		return (0);
-	}
-	return (0);
+	ft_putendl(str);
+	exit(-1);
 }
 
 int		main(int ac, char **av)
@@ -36,7 +27,7 @@ int		main(int ac, char **av)
 	if (ac)
 	printf("FD : %i\n", fd);
 	if (!(read_file(fd, &r)))
-		return (error("file"));
+		error_exit("INVALID FILE");
 //	printf("FD : %i\n", fd);
 //	if (!(init_env(&r)))
 //		return (error("env"));

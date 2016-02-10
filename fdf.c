@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/25 15:58:25 by fhuang            #+#    #+#             */
-/*   Updated: 2016/02/09 12:31:40 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/02/10 18:19:30 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ int		init_env(t_read *r)
 		return (0);
 	if (!(img.img = mlx_new_image(e.mlx, WIDTH, HEIGHT)))
 		return (0);
-	img.addr = mlx_get_data_addr(img.img, &img.bpb, &img.size_line, &img.endian);
+	img.addr = mlx_get_data_addr(img.img, &img.bpp, &img.size_line, &img.endian);
 	
 	//////////////////////////////////////////////////////////////////////////
 	if (r)

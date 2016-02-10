@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/15 10:47:50 by fhuang            #+#    #+#             */
-/*   Updated: 2016/02/09 12:06:24 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/02/10 18:19:31 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef struct			s_img
 {
 	void	*img;
 	char	*addr;
-	int		bpb;
+	int		bpp;
 	int		size_line;
 	int		endian;
 }						t_img;
