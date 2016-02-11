@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/25 14:51:46 by fhuang            #+#    #+#             */
-/*   Updated: 2016/02/10 18:19:33 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/02/11 12:59:13 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int		main(int ac, char **av)
 	if (!(read_file(fd, &r)))
 		error_exit("INVALID FILE");
 //	printf("FD : %i\n", fd);
-//	if (!(init_env(&r)))
-//		return (error("env"));
+	if (!(start_env(&r)))
+		error_exit("MLX ERROR");
 	return (0);
 }
