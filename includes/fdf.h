@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/15 10:47:50 by fhuang            #+#    #+#             */
-/*   Updated: 2016/02/12 13:52:53 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/02/12 19:50:35 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@
 # define SIZE_Y 1024
 # define WIDTH 1000
 # define HEIGHT 1000
-# define SPACE 30
 
 # define ARROW_LEFT 123
 # define ARROW_RIGHT 124
@@ -45,11 +44,11 @@
 # define KEY_D 2
 # define KEY_S 1
 # define KEY_A 0
+# define BRACKET_1 33
+# define BRACKET_2 30
 
-
-
-
-
+# define SPACE 30
+# define RELIEF 5
 
 typedef struct			s_read
 {
@@ -73,6 +72,9 @@ typedef struct			s_env
 {
 	void	*win;
 	void	*mlx;
+	t_img	img;
+	t_read	*r;
+	int		space;
 	int		posx;
 	int		posy;
 }						t_env;
@@ -83,7 +85,47 @@ typedef struct			s_coord
 	int		y;
 }						t_coord;
 
+
+/*
+** MLX
+*/
+
 int						read_file(int fd, t_read *r);
 int						start_env(t_read *r);
+void					dot_at_dot(t_env *e);//, t_img *img);
+void					exit_key(t_env *e, t_img *img);
+int						keys(int keycode, t_env *e);
+void					error_exit(char *str);
+
+/*
+** LINE
+*/
+
 void					put_pixel_img(t_img *img, int x, int y, int color);
+void					line(t_img *img, int x1, int y1, int x2, int y2);
+void					line_ver(t_env *e, int x, int y);
+
+/*
+** TRANSLATION
+*/
+
+void					go_right(t_env *e, t_img *img);
+void					go_left(t_env *e, t_img *img);
+void					go_up(t_env *e, t_img *img);
+void					go_down(t_env *e, t_img *img);
+
+/*
+** ZOOM
+*/
+
+void					zoom_in(t_env *e, t_img *img);
+void					zoom_out(t_env *e, t_img *img);
+
+/*
+** RELIEF
+*/
+
+void					relief_plus(t_env *e, t_img *img);
+
+
 #endif

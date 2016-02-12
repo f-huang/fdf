@@ -1,35 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   zoom.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/25 14:51:46 by fhuang            #+#    #+#             */
-/*   Updated: 2016/02/12 19:50:35 by fhuang           ###   ########.fr       */
+/*   Created: 2016/02/12 16:10:40 by fhuang            #+#    #+#             */
+/*   Updated: 2016/02/12 18:48:47 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void		error_exit(char *str)
+void		zoom_in(t_env *e, t_img *img)
 {
-	ft_putendl_fd(str, 2);
-	exit(EXIT_FAILURE);
 }
 
-int		main(int ac, char **av)
+void		zoom_out(t_env *e, t_img *img)
 {
-	int		fd;
-	t_read	r;
-
-	fd = open(av[1], O_RDONLY);
-	if (ac)
-	printf("FD : %i\n", fd);
-	if (!(read_file(fd, &r)))
-		error_exit("INVALID FILE");
-//	printf("FD : %i\n", fd);
-	if (!(start_env(&r)))
-		error_exit("MLX ERROR");
-	return (0);
 }

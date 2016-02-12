@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/25 14:53:49 by fhuang            #+#    #+#             */
-/*   Updated: 2016/02/08 17:52:41 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/02/12 19:44:55 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,19 +50,6 @@ static int		line_to_2dint(t_read **r, char *line)
 		return (0);
 	if (!((*r)->data[(*r)->i] = ft_tabatoi(tab)))
 		return (0);
-	
-/*
-	int		j  =0 ;
-	while (j < ft_tablen(tab))
-	{
-		printf("%i    ", (*r)->data[0][j]);
-		j++;
-	}
-	printf("\n ---------------\n");
-*/
-
-
-
 	if (!(*r)->len_line && !((*r)->len_line = (int*)ft_memalloc(sizeof(int) * count_n(ft_tablen(tab)))))
 		return (0);
 	(*r)->len_line[(*r)->i] = ft_tablen(tab);
@@ -84,16 +71,15 @@ static int		print_data(t_read *r)
 		i = 0;
 		while (i < r->len_line[j])
 		{
-			printf("%i ", r->data[j][i]);
+			ft_putnbr(r->data[j][i]);
+			ft_putchar(' ');
 			i++;
 		}
-		printf("\n");
+		ft_putchar('\n');
 		j++;
 	}
 	return (0);
 }
-
-
 
 int		read_file(int fd, t_read *r)
 {
@@ -115,6 +101,7 @@ int		read_file(int fd, t_read *r)
 			return (0);
 		}
 	}
+	r->i = 0;
 	print_data(r);
 	return (1);
 }
