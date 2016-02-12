@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/15 10:47:50 by fhuang            #+#    #+#             */
-/*   Updated: 2016/02/11 12:59:12 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/02/12 13:52:53 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,23 @@
 # define HEIGHT 1000
 # define SPACE 30
 
+# define ARROW_LEFT 123
+# define ARROW_RIGHT 124
+# define ARROW_DOWN 125
+# define ARROW_UP 126
+# define PLUS 69
+# define MINUS 78
+# define ESC 53
+# define KEY_W 13
+# define KEY_D 2
+# define KEY_S 1
+# define KEY_A 0
+
+
+
+
+
+
 typedef struct			s_read
 {
 	int		i;
@@ -49,12 +66,15 @@ typedef struct			s_img
 	int		bpb;
 	int		size_line;
 	int		endian;
+	int		color;
 }						t_img;
 
 typedef struct			s_env
 {
 	void	*win;
 	void	*mlx;
+	int		posx;
+	int		posy;
 }						t_env;
 
 typedef struct			s_coord

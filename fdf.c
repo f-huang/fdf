@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/25 15:58:25 by fhuang            #+#    #+#             */
-/*   Updated: 2016/02/12 01:24:03 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/02/12 13:52:51 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int		exit_key(int keycode, t_env *e)
 {
 	printf("keycode :%i\n", keycode);
 	if (e)
-		if (keycode == 53)
+		if (keycode == ESC)
 			exit(0);
 	return (0);
 }
@@ -64,29 +64,22 @@ void	dot_at_dot(t_read *r, t_img *img)
 	int		y;
 	int		i;
 	int		j;
-	int		color;
-	t_coord	c;
 
 	y = 30;
 	j = 0;
-	color = 255;
 	while (j < r->n_line)
 	{
 		i = 0;
 		x = 40;
 		while (i < r->len_line[j])
 		{
-			if (r->data[j][i] != 0)
-				color = 100;
 			if (i + 1 < r->len_line[j])
 			{
-				c.x = x + SPACE;
-				c.y = y - r->data[j][i + 1];
-				put_pixel_img(img, x, y, color);
-				line(img, x, y - r->data[j][i], c.x, c.y);
+				put_pixel_img(img, x, y, img->color);
+				line(img, x, y - r->data[j][i], x + SPACE, y-r->data[j][i + 1]);
 			}
 			if (j + 1 < r->n_line)
-			line_ver(img, x, y);
+					line_ver(img, x, y);
 			x += SPACE;
 			i++;
 		}
@@ -116,7 +109,9 @@ int		start_env(t_read *r)
 	   */
 	dot_at_dot(r, &img);
 	//////////////////////////////////////////////////////////////////////////
-	mlx_put_image_to_window(e.mlx, e.win, img.img, 0, 0);
+	e.posx = 0;
+	e.posy = 0;
+	mlx_put_image_to_window(e.mlx, e.win, img.img, e.posx, e.posy);
 	mlx_key_hook(e.win, exit_key, &e);
 	mlx_loop(e.mlx);
 	return (1);
