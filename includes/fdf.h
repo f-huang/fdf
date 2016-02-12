@@ -46,7 +46,7 @@ typedef struct			s_img
 {
 	void	*img;
 	char	*addr;
-	int		bpp;
+	int		bpb;
 	int		size_line;
 	int		endian;
 }						t_img;
@@ -61,7 +61,6 @@ typedef struct			s_coord
 {
 	int		x;
 	int		y;
-	int		z;
 }						t_coord;
 
 int						read_file(int fd, t_read *r);

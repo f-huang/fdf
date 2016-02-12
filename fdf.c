@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/25 15:58:25 by fhuang            #+#    #+#             */
-/*   Updated: 2016/02/11 12:59:07 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/02/12 01:24:03 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,26 @@ void	line(t_img *img, int x1, int y1, int x2, int y2)
 		a = (double)(y2 - y1) / (double)(x2 - x1);
 	b = (double)((y1 - a * x1));
 	//	printf (" y = %fx + %f\n" ,a , b);
-	x = 0;
-	while (x < 20)
+	x = x1;
+	while (x < x2)
 	{
 		y = a * x + b;
 		put_pixel_img(img, x, y, 255);
 		x++;
 		//		printf("X : %i -- Y : %i\n", x, y);
+	}
+}
+
+void	line_ver(t_img *img, int x, int y)
+{
+	int		i;
+
+	i = 0;
+	while (i< SPACE)
+	{
+		put_pixel_img(img, x, y, 255);
+		y++;
+		i++;
 	}
 }
 
@@ -52,25 +65,32 @@ void	dot_at_dot(t_read *r, t_img *img)
 	int		i;
 	int		j;
 	int		color;
+	t_coord	c;
 
-	y = 500;
+	y = 30;
 	j = 0;
 	color = 255;
 	while (j < r->n_line)
 	{
 		i = 0;
-		x = 100;
+		x = 40;
 		while (i < r->len_line[j])
 		{
 			if (r->data[j][i] != 0)
 				color = 100;
-			y = y - r->data[j][i];
-			put_pixel_img(img, x, y, color);
-			line(img, i, j, x, y);
-			x += 10;
+			if (i + 1 < r->len_line[j])
+			{
+				c.x = x + SPACE;
+				c.y = y - r->data[j][i + 1];
+				put_pixel_img(img, x, y, color);
+				line(img, x, y - r->data[j][i], c.x, c.y);
+			}
+			if (j + 1 < r->n_line)
+			line_ver(img, x, y);
+			x += SPACE;
 			i++;
 		}
-		y += 10;
+		y += SPACE;
 		j++;
 	}
 }
@@ -86,7 +106,7 @@ int		start_env(t_read *r)
 		return (0);
 	if (!(img.img = mlx_new_image(e.mlx, WIDTH, HEIGHT)))
 		return (0);
-	img.addr = mlx_get_data_addr(img.img, &img.bpp, &img.size_line, &img.endian);
+	img.addr = mlx_get_data_addr(img.img, &img.bpb, &img.size_line, &img.endian);
 
 	//////////////////////////////////////////////////////////////////////////
 	/*
@@ -96,7 +116,7 @@ int		start_env(t_read *r)
 	   */
 	dot_at_dot(r, &img);
 	//////////////////////////////////////////////////////////////////////////
-	mlx_put_image_to_window(e.mlx, e.win, img.img, 30, 40);
+	mlx_put_image_to_window(e.mlx, e.win, img.img, 0, 0);
 	mlx_key_hook(e.win, exit_key, &e);
 	mlx_loop(e.mlx);
 	return (1);
