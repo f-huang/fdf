@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/25 15:58:25 by fhuang            #+#    #+#             */
-/*   Updated: 2016/02/13 18:09:08 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/02/13 20:15:25 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,20 @@ void	dot_at_dot(t_env *e)//, t_img *img)
 	int		i;
 	int		j;
 
-	y = 300;
+	y = e->img.y;
 	j = 0;
 	while (j < e->r->n_line)
 	{
 		i = 0;
-		x = 150;
+		x = e->img.x;
 		while (i < e->r->len_line[j])
 		{
+			{
 			if (i + 1 < e->r->len_line[j])
-				line(&e->img, x, y - e->r->data[j][i], x + SPACE, y - e->r->data[j][i + 1]);
+				line(e, x, y - e->r->data[j][i], x + SPACE, y - e->r->data[j][i + 1]);
 			if (j + 1 < e->r->n_line)
 				line_ver(e, x, y);
+			}
 			x += SPACE;
 			i++;
 		}
@@ -56,8 +58,10 @@ void	go(t_env *e)
 	if (!(e->img.img = mlx_new_image(e->mlx, WIDTH + e->r->i, HEIGHT + e->r->i++)))
 		error_exit("IMAGE");
 	e->img.addr = mlx_get_data_addr(e->img.img, &e->img.bpb, &e->img.size_line, &e->img.endian);
-//	print_data(e->r);
+	print_data(e->r);
 	contour(e);
+	e->img.x = X;
+	e->img.y = Y;
 	dot_at_dot(e);// (&e)->img);
 	mlx_put_image_to_window(e->mlx, e->win, e->img.img, e->posx, e->posy);
 }

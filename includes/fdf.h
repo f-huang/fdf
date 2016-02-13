@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/15 10:47:50 by fhuang            #+#    #+#             */
-/*   Updated: 2016/02/13 18:09:08 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/02/13 20:15:25 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@
 # define SIZE_Y 1024
 # define WIDTH 1000
 # define HEIGHT 1000
+
+# define X 175
+# define Y 300
 
 # define ARROW_LEFT 123
 # define ARROW_RIGHT 124
@@ -66,6 +69,8 @@ typedef struct			s_img
 	int		size_line;
 	int		endian;
 	int		color;
+	int		x;
+	int		y;
 }						t_img;
 
 typedef struct			s_env
@@ -102,7 +107,7 @@ void					go(t_env *e);
 */
 
 void					put_pixel_img(t_img *img, int x, int y, int color);
-void					line(t_img *img, int x1, int y1, int x2, int y2);
+void					line(t_env *e, int x1, int y1, int x2, int y2);
 void					line_ver(t_env *e, int x, int y);
 
 /*

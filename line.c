@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/11 11:18:40 by fhuang            #+#    #+#             */
-/*   Updated: 2016/02/13 18:09:08 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/02/13 20:15:25 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,15 @@ void	put_pixel_img(t_img *img, int x, int y, int color)
 	img->addr[y * img->size_line + ++x] = color; //COLOR WRONG
 }
 
-void	line(t_img *img, int x1, int y1, int x2, int y2)
+void	line(t_env *e, int x1, int y1, int x2, int y2)
 {
 	double		a;
 	double		b;
 	double		x;
 	int			y;
+	t_img		*img;
 
+	img = &e->img;
 	a = 0;
 	if (x2 != x1)
 		a = (double)(y2 - y1) / (double)(x2 - x1);
