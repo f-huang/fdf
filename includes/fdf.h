@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/15 10:47:50 by fhuang            #+#    #+#             */
-/*   Updated: 2016/02/12 19:50:35 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/02/13 18:09:08 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ typedef struct			s_coord
 	int		y;
 }						t_coord;
 
-
+int						print_data(t_read *r);
 /*
 ** MLX
 */
@@ -96,7 +96,7 @@ void					dot_at_dot(t_env *e);//, t_img *img);
 void					exit_key(t_env *e, t_img *img);
 int						keys(int keycode, t_env *e);
 void					error_exit(char *str);
-
+void					go(t_env *e);
 /*
 ** LINE
 */
@@ -126,6 +126,7 @@ void					zoom_out(t_env *e, t_img *img);
 */
 
 void					relief_plus(t_env *e, t_img *img);
+void					relief_minus(t_env *e, t_img *img);
 
 
 #endif

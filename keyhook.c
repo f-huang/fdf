@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/12 15:23:35 by fhuang            #+#    #+#             */
-/*   Updated: 2016/02/12 19:50:35 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/02/13 18:09:08 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		keys(int keycode, t_env *e)
 {
 
 	printf("keycode : %i\n", keycode);
-	void	(*p[99999])(t_env *e, t_img *img);
+	void	(*p[127])(t_env *e, t_img *img);
 
 	p[ESC] = exit_key;
 	p[ARROW_LEFT] = go_left;
@@ -32,8 +32,11 @@ int		keys(int keycode, t_env *e)
 	p[PLUS] = zoom_in;
 	p[MINUS] = zoom_out;
 	p[BRACKET_1] = relief_plus;
+	p[BRACKET_2] = relief_minus;
 
-	if (keycode == ESC || keycode == ARROW_LEFT || keycode == ARROW_RIGHT || keycode == ARROW_UP || keycode == ARROW_DOWN || keycode == PLUS || keycode == MINUS || keycode == BRACKET_1)
+	if (keycode == ESC || keycode == ARROW_LEFT || keycode == ARROW_RIGHT ||\
+			keycode == ARROW_UP || keycode == ARROW_DOWN || keycode == PLUS ||\
+			keycode == MINUS || keycode == BRACKET_1 || keycode == BRACKET_2)
 	(*p[keycode])(e, &e->img);
 	return (0);
 }

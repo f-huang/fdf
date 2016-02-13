@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/25 14:53:49 by fhuang            #+#    #+#             */
-/*   Updated: 2016/02/12 19:44:55 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/02/13 18:09:08 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static int		line_to_2dint(t_read **r, char *line)
 	return (1);
 }
 
-static int		print_data(t_read *r)
+int		print_data(t_read *r)
 {
 	int		i;
 	int		j;
@@ -72,7 +72,7 @@ static int		print_data(t_read *r)
 		while (i < r->len_line[j])
 		{
 			ft_putnbr(r->data[j][i]);
-			ft_putchar(' ');
+			ft_putstr("  ");
 			i++;
 		}
 		ft_putchar('\n');
@@ -102,6 +102,5 @@ int		read_file(int fd, t_read *r)
 		}
 	}
 	r->i = 0;
-	print_data(r);
 	return (1);
 }
