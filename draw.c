@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/11 11:18:40 by fhuang            #+#    #+#             */
-/*   Updated: 2016/02/13 20:15:25 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/02/15 19:01:30 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,6 @@ void	put_pixel_img(t_img *img, int x, int y, int color)
 	img->addr[y * img->size_line + ++x] = color;//COLOR WRONG
 	
 //	printf("color ; %i\n", color);
-
-
-	if (color != 255)
-	img->addr[y * img->size_line + ++x] = color; //COLOR WRONG
 }
 
 void	line(t_env *e, int x1, int y1, int x2, int y2)
@@ -42,7 +38,7 @@ void	line(t_env *e, int x1, int y1, int x2, int y2)
 	{
 		y = a * x + b;
 		put_pixel_img(img, x, y, 255);
-		x++;
+		x += 0.2;
 	}
 }
 

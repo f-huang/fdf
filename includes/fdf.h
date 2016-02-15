@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/15 10:47:50 by fhuang            #+#    #+#             */
-/*   Updated: 2016/02/13 20:15:25 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/02/15 19:01:30 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <sys/types.h>
 # include <stdlib.h>
 # include <string.h>
+# include <math.h>
 # include "libft.h"
 # include "get_next_line.h"
 
@@ -86,11 +87,12 @@ typedef struct			s_env
 
 typedef struct			s_coord
 {
-	int		x;
-	int		y;
+	double		x;
+	double		y;
 }						t_coord;
 
 int						print_data(t_read *r);
+
 /*
 ** MLX
 */
@@ -109,6 +111,12 @@ void					go(t_env *e);
 void					put_pixel_img(t_img *img, int x, int y, int color);
 void					line(t_env *e, int x1, int y1, int x2, int y2);
 void					line_ver(t_env *e, int x, int y);
+
+
+
+
+t_coord					three_toto(int x, int y, int z);
+
 
 /*
 ** TRANSLATION
