@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/15 10:47:50 by fhuang            #+#    #+#             */
-/*   Updated: 2016/02/15 19:01:30 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/02/16 19:26:50 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,10 @@ typedef struct			s_env
 
 typedef struct			s_coord
 {
-	double		x;
-	double		y;
+	int		x;
+	int		y;
+	int		x2;
+	int		y2;
 }						t_coord;
 
 int						print_data(t_read *r);
@@ -115,7 +117,7 @@ void					line_ver(t_env *e, int x, int y);
 
 
 
-t_coord					three_toto(int x, int y, int z);
+void					three_toto(t_env *e, t_coord *s, int i, int j);
 
 
 /*

@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/25 15:58:25 by fhuang            #+#    #+#             */
-/*   Updated: 2016/02/15 19:01:30 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/02/16 19:26:48 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,16 @@ void	dot_at_dot(t_env *e)//, t_img *img)
 			if (i + 1 < e->r->len_line[j])
 			{
 		//		line(e, x, y - e->r->data[j][i], x + SPACE, y - e->r->data[j][i + 1]);
-				s = three_toto(i, j, e->r->data[j][i + 1]);
+				three_toto(e, &s, j, i);
 //				line(e, x, y -e->r->data[j][i], s.x, s.y - e->r->data[j][i]);
 				line(e, x, y, s.x, s.y);
 			}
 		//	if (j + 1 < e->r->n_line)
 		//		line_ver(e, x, y);
-			x += SPACE;
+			e->img.x += SPACE;
 			i++;
 		}
-		y += SPACE;
+		e->img.y += SPACE;
 		j++;
 	}
 }
