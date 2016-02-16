@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/25 15:58:25 by fhuang            #+#    #+#             */
-/*   Updated: 2016/02/16 19:26:48 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/02/16 23:31:57 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,28 @@
 
 void	dot_at_dot(t_env *e)//, t_img *img)
 {
-	int		x;
-	int		y;
 	int		i;
 	int		j;
 	t_coord	s;
 
-	y = e->img.y;
 	j = 0;
 	while (j < e->r->n_line)
 	{
 		i = 0;
-		x = e->img.x;
 		while (i < e->r->len_line[j])
 		{
 			if (i + 1 < e->r->len_line[j])
 			{
-		//		line(e, x, y - e->r->data[j][i], x + SPACE, y - e->r->data[j][i + 1]);
-				three_toto(e, &s, j, i);
-//				line(e, x, y -e->r->data[j][i], s.x, s.y - e->r->data[j][i]);
-				line(e, x, y, s.x, s.y);
+				calcul_hor(e, &s, i, j);
+				line(e, &s);
 			}
-		//	if (j + 1 < e->r->n_line)
-		//		line_ver(e, x, y);
-			e->img.x += SPACE;
+			if (j + 1 < e->r->n_line)
+			{
+				calcul_ver(e, &s, i, j);
+				line(e, &s);
+			}
 			i++;
 		}
-		e->img.y += SPACE;
 		j++;
 	}
 }
@@ -64,8 +59,6 @@ void	go(t_env *e)
 	e->img.addr = mlx_get_data_addr(e->img.img, &e->img.bpb, &e->img.size_line, &e->img.endian);
 	print_data(e->r);
 	contour(e);
-	e->img.x = X;
-	e->img.y = Y;
 	dot_at_dot(e);// (&e)->img);
 	mlx_put_image_to_window(e->mlx, e->win, e->img.img, e->posx, e->posy);
 }
@@ -87,8 +80,9 @@ int		start_env(t_read *r)
 
 	}//////////////////////////////////////////////////////////////////////////
 
-
-
+	e.ang.omega = OMEGA;
+	e.ang.alpha = ALPHA;
+	e.space = SPACE;
 	go(&e);
 
 	mlx_key_hook(e.win, keys, &e);

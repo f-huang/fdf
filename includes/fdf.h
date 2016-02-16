@@ -34,8 +34,8 @@
 # define WIDTH 1000
 # define HEIGHT 1000
 
-# define X 175
-# define Y 300
+# define X 350
+# define Y 550
 
 # define ARROW_LEFT 123
 # define ARROW_RIGHT 124
@@ -50,9 +50,28 @@
 # define KEY_A 0
 # define BRACKET_1 33
 # define BRACKET_2 30
+# define COMA 43
+# define DOT 47
 
-# define SPACE 30
+
+# define SPACE 20
 # define RELIEF 5
+# define ZOOM 5
+# define ROTATE_1 0.1
+# define ROTATE_2 0.1
+
+#define OMEGA (40 * (M_PI / 180))
+#define ALPHA (190 * (M_PI / 180))
+
+typedef struct			s_angle
+{
+	float		omega;
+	float		alpha;
+	float		cos_omega;
+	float		sin_omega;
+	float		cos_alpha;
+	float		sin_alpha;
+}						t_angle;
 
 typedef struct			s_read
 {
@@ -70,8 +89,6 @@ typedef struct			s_img
 	int		size_line;
 	int		endian;
 	int		color;
-	int		x;
-	int		y;
 }						t_img;
 
 typedef struct			s_env
@@ -80,6 +97,7 @@ typedef struct			s_env
 	void	*mlx;
 	t_img	img;
 	t_read	*r;
+	t_angle	ang;
 	int		space;
 	int		posx;
 	int		posy;
@@ -87,11 +105,12 @@ typedef struct			s_env
 
 typedef struct			s_coord
 {
-	int		x;
-	int		y;
+	int		x1;
+	int		y1;
 	int		x2;
 	int		y2;
 }						t_coord;
+
 
 int						print_data(t_read *r);
 
@@ -111,13 +130,14 @@ void					go(t_env *e);
 */
 
 void					put_pixel_img(t_img *img, int x, int y, int color);
-void					line(t_env *e, int x1, int y1, int x2, int y2);
+void					line(t_env *e, t_coord *s);
 void					line_ver(t_env *e, int x, int y);
 
 
 
 
-void					three_toto(t_env *e, t_coord *s, int i, int j);
+void					calcul_hor(t_env *e, t_coord *s, int i, int j);
+void					calcul_ver(t_env *e, t_coord *s, int i, int j);
 
 
 /*
@@ -143,5 +163,12 @@ void					zoom_out(t_env *e, t_img *img);
 void					relief_plus(t_env *e, t_img *img);
 void					relief_minus(t_env *e, t_img *img);
 
+/*
+** ROTATE
+*/
 
+void					rotate_w(t_env *e, t_img *img);
+void					rotate_s(t_env *e, t_img *img);
+void					rotate_a(t_env *e, t_img *img);
+void					rotate_d(t_env *e, t_img *img);
 #endif
