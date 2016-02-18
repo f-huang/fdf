@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/11 11:18:40 by fhuang            #+#    #+#             */
-/*   Updated: 2016/02/16 23:40:35 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/02/17 17:46:06 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	put_pixel_img(t_img *img, int x, int y, int color)
 	
 //	printf("color ; %i\n", color);
 }
-
+/*
 void	line(t_env *e, t_coord *s)
 {
 	double		a;
@@ -43,6 +43,34 @@ void	line(t_env *e, t_coord *s)
 		y = a * x + b;
 		put_pixel_img(img, x, y, 255);
 		x++;
+	}
+}*/
+
+
+void	line(t_env *e, t_coord *s)
+{
+	double		dx;
+	double		dy;
+	double			x;
+	double			y;
+	double		longueur;
+
+	abs(s->x2 - s->x1) >= abs(s->y2 - s->y1) ? (longueur = abs(s->x2 - s->x1)) : (longueur = abs(s->y2 - s->y1));
+
+	if (longueur)
+	{
+		dx = (s->x2 - s->x1) / longueur;
+		dy = (s->y2 - s->y1) / longueur;
+	}
+	x = s->x1;
+	y = s->y1;
+	int		i = 0;
+	while (i < longueur)
+	{
+		put_pixel_img(&e->img, x, y, 255);
+		x += dx;
+		y += dy;
+		i++;
 	}
 }
 

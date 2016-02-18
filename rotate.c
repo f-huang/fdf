@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/16 23:45:29 by fhuang            #+#    #+#             */
-/*   Updated: 2016/02/16 23:55:38 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/02/17 18:07:57 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void		rotate_a(t_env *e, t_img *img)
 	go(e);
 }
 
-
 void		rotate_d(t_env *e, t_img *img)
 {
 	mlx_clear_window(e->mlx, e->win);
@@ -29,7 +28,6 @@ void		rotate_d(t_env *e, t_img *img)
 	go(e);
 }
 
-
 void		rotate_s(t_env *e, t_img *img)
 {
 	mlx_clear_window(e->mlx, e->win);
@@ -37,7 +35,6 @@ void		rotate_s(t_env *e, t_img *img)
 	e->ang.alpha -= ROTATE_2;
 	go(e);
 }
-
 
 void		rotate_w(t_env *e, t_img *img)
 {

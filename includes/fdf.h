@@ -24,7 +24,7 @@
 # include "libft.h"
 # include "get_next_line.h"
 
-
+# include <SDL.h>
 
 
 #include <stdio.h>
@@ -34,8 +34,8 @@
 # define WIDTH 1000
 # define HEIGHT 1000
 
-# define X 350
-# define Y 550
+# define X 300
+# define Y 500
 
 # define ARROW_LEFT 123
 # define ARROW_RIGHT 124
@@ -60,8 +60,8 @@
 # define ROTATE_1 0.1
 # define ROTATE_2 0.1
 
-#define OMEGA (40 * (M_PI / 180))
-#define ALPHA (190 * (M_PI / 180))
+#define OMEGA (20 * (M_PI / 180))
+#define ALPHA (220 * (M_PI / 180))
 
 typedef struct			s_angle
 {

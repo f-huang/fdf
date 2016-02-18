@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/12 15:23:35 by fhuang            #+#    #+#             */
-/*   Updated: 2016/02/17 00:15:51 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/02/17 17:01:23 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,10 @@ int		keys(int keycode, t_env *e)
 
 	if (keycode == ESC || keycode == ARROW_LEFT || keycode == ARROW_RIGHT ||\
 			keycode == ARROW_UP || keycode == ARROW_DOWN || keycode == PLUS ||\
-			keycode == MINUS || keycode == BRACKET_1 || keycode == BRACKET_2 || keycode == COMA || keycode == DOT || keycode == KEY_W || keycode == KEY_S || keycode == KEY_A || keycode == KEY_D)
+			keycode == MINUS || keycode == BRACKET_1 || keycode == BRACKET_2 ||\
+			keycode == COMA || keycode == DOT || keycode == KEY_W || keycode ==\
+			KEY_S || keycode == KEY_A || keycode == KEY_D)
+	
 	(*p[keycode])(e, &e->img);
 	return (0);
 }

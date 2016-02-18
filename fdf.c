@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/25 15:58:25 by fhuang            #+#    #+#             */
-/*   Updated: 2016/02/16 23:31:57 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/02/17 18:29:39 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	contour(t_env *e)
 {
 	for (int i = 0; i < (&e->img)->size_line; i+=4)
 		(&e->img)->addr[i] = 255;
-	for (int i = 0; i < WIDTH; i++)
+	for (int i = 0; i < HEIGHT - 1; i++)
 		(&e->img)->addr[(&e->img)->size_line * i] = 255;
 	for (int i = 0; i < HEIGHT - 1; i++)
 		(&e->img)->addr[(&e->img)->size_line * i + (&e->img)->size_line - 4] = 255;
@@ -56,7 +56,11 @@ void	go(t_env *e)
 {
 	if (!(e->img.img = mlx_new_image(e->mlx, WIDTH + e->r->i, HEIGHT + e->r->i++)))
 		error_exit("IMAGE");
+
+
 	e->img.addr = mlx_get_data_addr(e->img.img, &e->img.bpb, &e->img.size_line, &e->img.endian);
+
+
 	print_data(e->r);
 	contour(e);
 	dot_at_dot(e);// (&e)->img);
@@ -85,6 +89,7 @@ int		start_env(t_read *r)
 	e.space = SPACE;
 	go(&e);
 
+	SDL_EnableKeyRepeat(10, 10);
 	mlx_key_hook(e.win, keys, &e);
 	mlx_loop(e.mlx);
 
