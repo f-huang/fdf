@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/25 15:58:25 by fhuang            #+#    #+#             */
-/*   Updated: 2016/02/17 18:29:39 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/02/20 17:43:53 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,10 @@ void	go(t_env *e)
 
 	e->img.addr = mlx_get_data_addr(e->img.img, &e->img.bpb, &e->img.size_line, &e->img.endian);
 
-
 	print_data(e->r);
 	contour(e);
 	dot_at_dot(e);// (&e)->img);
-	mlx_put_image_to_window(e->mlx, e->win, e->img.img, e->posx, e->posy);
+	mlx_put_image_to_window(e->mlx, e->win, e->img.img, 0, 0);
 }
 
 
@@ -72,24 +71,19 @@ int		start_env(t_read *r)
 {
 	t_env		e;
 
-	if (r->i++ == 0)
-	{
-		e.posx = 0;
-		e.posy = 0;
+		e.posx = X;
+		e.posy = Y;
 		e.r = r;
 		if (!(e.mlx = mlx_init()))
 			return (0);
 		if (!(e.win = mlx_new_window(e.mlx, SIZE_X, SIZE_Y, "MLX")))
 			return (0);
 
-	}//////////////////////////////////////////////////////////////////////////
-
 	e.ang.omega = OMEGA;
 	e.ang.alpha = ALPHA;
 	e.space = SPACE;
 	go(&e);
 
-	SDL_EnableKeyRepeat(10, 10);
 	mlx_key_hook(e.win, keys, &e);
 	mlx_loop(e.mlx);
 

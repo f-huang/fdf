@@ -30,6 +30,8 @@ typedef struct	s_gnl
 	char	*lfo;
 }				t_gnl;
 
+int				get_next_line(int const fd, char **line);
+
 /*
 **	DYNAM.H
 */

@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/07 13:57:45 by fhuang            #+#    #+#             */
-/*   Updated: 2016/01/25 14:34:56 by fhuang           ###   ########.fr       */
+/*   Created: 2016/02/20 18:10:43 by fhuang            #+#    #+#             */
+/*   Updated: 2016/02/20 18:33:02 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "fdf.h"
 
-# include "libft.h"
-# include <stdlib.h>
-# include <unistd.h>
-
-# define BUFF_SIZE  2056
-
-int				get_next_line(int const fd, char **line);
-
-typedef struct	s_gnl
+void		switch_colors(t_env *e, t_img *img)
 {
-	int		fd;
-	char	*lfo;
-}				t_gnl;
+	static int	i = 0;
 
-#endif
+	i % 4 ? img->blue = 1 : (img->blue = 0);
+	i % 3 ? img->green = 1 : (img->green = 0);
+	i % 10 ? img->red = 1 : (img->red = 0);
+	i++;
+	mlx_clear_window(e->mlx, e->win);
+	mlx_destroy_image(e->mlx, e->img.img);
+	go(e);
+}

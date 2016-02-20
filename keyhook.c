@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/12 15:23:35 by fhuang            #+#    #+#             */
-/*   Updated: 2016/02/17 17:01:23 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/02/20 18:18:42 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int		keys(int keycode, t_env *e)
 {
 
 	printf("keycode : %i\n", keycode);
-	void	(*p[127])(t_env *e, t_img *img);
+	static void	(*p[127])(t_env *e, t_img *img);
 
 	p[ESC] = exit_key;
 	p[ARROW_LEFT] = go_left;
@@ -38,6 +38,7 @@ int		keys(int keycode, t_env *e)
 	p[KEY_S] = rotate_s;
 	p[KEY_A] = rotate_a;
 	p[KEY_D] = rotate_d;
+	p[KEY_SPACE] = switch_colors;
 
 
 
@@ -45,7 +46,7 @@ int		keys(int keycode, t_env *e)
 			keycode == ARROW_UP || keycode == ARROW_DOWN || keycode == PLUS ||\
 			keycode == MINUS || keycode == BRACKET_1 || keycode == BRACKET_2 ||\
 			keycode == COMA || keycode == DOT || keycode == KEY_W || keycode ==\
-			KEY_S || keycode == KEY_A || keycode == KEY_D)
+			KEY_S || keycode == KEY_A || keycode == KEY_D || keycode == KEY_SPACE)
 	
 	(*p[keycode])(e, &e->img);
 	return (0);

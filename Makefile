@@ -27,13 +27,14 @@ SRC = main.c			\
 	  translation.c		\
 	  zoom.c			\
 	  angles.c			\
-	  brackets.c
+	  brackets.c		\
+	  color.c
 
 OBJ = $(addprefix $(OBJ_PATH),$(SRC:%.c=%.o))
 
 HEADER_PATH = -I includes/
 
-LIBFT_PATH = libft.a
+LIBFT_PATH = libft/libft.a
 
 OBJ_PATH = ./OBJ/
 
@@ -43,7 +44,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@$(CC) $(OBJ) $(MLXFLAGS) $(LIBFT_PATH) -o $(NAME)
-	@$(MAKE) -C libft
+	@$(MAKE) re -C libft
 
 $(OBJ_PATH)%.o : %.c
 	@echo "\033[1;32m" "Compiling $< into $@" "\033[0m"
@@ -51,11 +52,11 @@ $(OBJ_PATH)%.o : %.c
 	@$(CC) $(HEADER_PATH) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -rf $(OBJ_PATH)
-#	@$(MAKE) clean -C libft
+	@rm -rf $(OBJ_PATH)
+	@$(MAKE) clean -C libft
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re : fclean all
 

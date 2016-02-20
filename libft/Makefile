@@ -99,7 +99,7 @@ CFLAGS = -c -Wall -Wextra -Werror
 all: $(NAME)
 
 $(NAME):
-	@echo "\033[32mCompiling..."
+	@echo "\033[32mCompiling Libft..."
 	@$(CC) $(CFLAGS) $(HEADER_PATH) $(SRC)
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)

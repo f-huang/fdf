@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/12 16:10:40 by fhuang            #+#    #+#             */
-/*   Updated: 2016/02/17 18:09:54 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/02/20 16:55:12 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,7 @@ void		zoom_out(t_env *e, t_img *img)
 	mlx_clear_window(e->mlx, e->win);
 	mlx_destroy_image(e->mlx, img->img);
 	e->space -= ZOOM;
+	if (e->space <= 0)
+		e->space = 1;
 	go(e);
 }
