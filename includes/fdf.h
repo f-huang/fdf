@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/15 10:47:50 by fhuang            #+#    #+#             */
-/*   Updated: 2016/02/16 19:26:50 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/02/22 19:46:37 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 # include <string.h>
 # include <math.h>
 # include "../libft/libft.h"
+
+#include "X.h"
 
 #include <stdio.h>
 
@@ -44,6 +46,7 @@
 # define KEY_D 2
 # define KEY_S 1
 # define KEY_A 0
+# define KEY_P 35
 # define KEY_SPACE 49
 # define BRACKET_1 33
 # define BRACKET_2 30
@@ -57,8 +60,8 @@
 # define ROTATE_1 0.1
 # define ROTATE_2 0.1
 
-#define OMEGA (20 * (M_PI / 180))
-#define ALPHA (220 * (M_PI / 180))
+#define OMEGA (310 * (M_PI / 180))
+#define ALPHA (-40 * (M_PI / 180))
 
 typedef struct			s_angle
 {
@@ -142,8 +145,10 @@ void					switch_colors(t_env *env, t_img *img);
 ** PARALLELES
 */
 
-void					calcul_hor(t_env *e, t_coord *s, int i, int j);
-void					calcul_ver(t_env *e, t_coord *s, int i, int j);
+void					ortho_hor(t_env *e, t_coord *s, int i, int j);
+void					ortho_ver(t_env *e, t_coord *s, int i, int j);
+void					iso_hor(t_env *e, t_coord *s, int i, int j);
+void					iso_ver(t_env *e, t_coord *s, int i, int j);
 
 
 /*

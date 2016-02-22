@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/25 15:58:25 by fhuang            #+#    #+#             */
-/*   Updated: 2016/02/20 17:43:53 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/02/22 19:46:35 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ void	dot_at_dot(t_env *e)//, t_img *img)
 		{
 			if (i + 1 < e->r->len_line[j])
 			{
-				calcul_hor(e, &s, i, j);
+				ortho_hor(e, &s, i, j);
 				line(e, &s);
 			}
 			if (j + 1 < e->r->n_line)
 			{
-				calcul_ver(e, &s, i, j);
+				ortho_ver(e, &s, i, j);
 				line(e, &s);
 			}
 			i++;
@@ -66,6 +66,12 @@ void	go(t_env *e)
 	mlx_put_image_to_window(e->mlx, e->win, e->img.img, 0, 0);
 }
 
+int		hook(t_env *e)
+{
+	mlx_do_key_autorepeaton(e->mlx);
+	mlx_key_hook(e->win, keys, e);
+	return (0);
+}
 
 int		start_env(t_read *r)
 {
@@ -75,16 +81,16 @@ int		start_env(t_read *r)
 		e.posy = Y;
 		e.r = r;
 		if (!(e.mlx = mlx_init()))
-			return (0);
+			error_exit("Environment error");
 		if (!(e.win = mlx_new_window(e.mlx, SIZE_X, SIZE_Y, "MLX")))
-			return (0);
+			error_exit("Window error");
 
 	e.ang.omega = OMEGA;
 	e.ang.alpha = ALPHA;
 	e.space = SPACE;
 	go(&e);
 
-	mlx_key_hook(e.win, keys, &e);
+	mlx_hook(e.win, KeyPress, KeyPressMask, hook, &e);
 	mlx_loop(e.mlx);
 
 	//////////////////////////////////////////////////////////////////////////

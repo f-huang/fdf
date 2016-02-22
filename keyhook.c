@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/12 15:23:35 by fhuang            #+#    #+#             */
-/*   Updated: 2016/02/20 18:18:42 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/02/22 17:10:42 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ void	exit_key(t_env *e, t_img *img)
 	exit(EXIT_SUCCESS);
 }
 
-int		keys(int keycode, t_env *e)
+int		keys(int kc, t_env *e)
 {
 
-	printf("keycode : %i\n", keycode);
+	printf("kc : %i\n", kc);
 	static void	(*p[127])(t_env *e, t_img *img);
 
 	p[ESC] = exit_key;
@@ -42,12 +42,11 @@ int		keys(int keycode, t_env *e)
 
 
 
-	if (keycode == ESC || keycode == ARROW_LEFT || keycode == ARROW_RIGHT ||\
-			keycode == ARROW_UP || keycode == ARROW_DOWN || keycode == PLUS ||\
-			keycode == MINUS || keycode == BRACKET_1 || keycode == BRACKET_2 ||\
-			keycode == COMA || keycode == DOT || keycode == KEY_W || keycode ==\
-			KEY_S || keycode == KEY_A || keycode == KEY_D || keycode == KEY_SPACE)
+	if (kc == ESC || kc == ARROW_LEFT || kc == ARROW_RIGHT || kc == ARROW_UP\
+			|| kc == ARROW_DOWN || kc == BRACKET_1 || kc == BRACKET_2 ||\
+			kc == COMA || kc == DOT || kc == KEY_W || kc == KEY_S ||\
+			kc == KEY_A || kc == KEY_D || kc == KEY_SPACE)
 	
-	(*p[keycode])(e, &e->img);
+	(*p[kc])(e, &e->img);
 	return (0);
 }
