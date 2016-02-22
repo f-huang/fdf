@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/25 15:58:25 by fhuang            #+#    #+#             */
-/*   Updated: 2016/02/22 23:28:57 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/02/22 23:35:49 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int		start_env(t_read *r)
 	go(&e);
 
 //	mlx_key_hook(e.win, keys, &e);
-	mlx_hook(e.win, 2, 1, keys, &e);
+	mlx_hook(e.win, KeyPress, KeyPressMask, keys, &e);
 	mlx_loop(e.mlx);
 
 	//////////////////////////////////////////////////////////////////////////
