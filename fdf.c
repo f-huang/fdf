@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/25 15:58:25 by fhuang            #+#    #+#             */
-/*   Updated: 2016/02/22 19:46:35 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/02/22 23:28:57 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,13 +66,6 @@ void	go(t_env *e)
 	mlx_put_image_to_window(e->mlx, e->win, e->img.img, 0, 0);
 }
 
-int		hook(t_env *e)
-{
-	mlx_do_key_autorepeaton(e->mlx);
-	mlx_key_hook(e->win, keys, e);
-	return (0);
-}
-
 int		start_env(t_read *r)
 {
 	t_env		e;
@@ -90,7 +83,8 @@ int		start_env(t_read *r)
 	e.space = SPACE;
 	go(&e);
 
-	mlx_hook(e.win, KeyPress, KeyPressMask, hook, &e);
+//	mlx_key_hook(e.win, keys, &e);
+	mlx_hook(e.win, 2, 1, keys, &e);
 	mlx_loop(e.mlx);
 
 	//////////////////////////////////////////////////////////////////////////
