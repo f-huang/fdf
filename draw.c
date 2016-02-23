@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/11 11:18:40 by fhuang            #+#    #+#             */
-/*   Updated: 2016/02/23 12:44:50 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/02/23 19:01:42 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,16 @@
 void	put_pixel_img(t_img *img, int x, int y)
 {
 	x *= 4;
-	if (y >= 0 && y <= HEIGHT && x >= 0 && x < img->size_line)
+//	printf("Y ::::: %i\n", y);
+//	printf("H ::::: %i\n", HEIGHT);
+	if (y >= 0 && y < HEIGHT && x >= 0 && x < img->size_line)
 	{
 		if (img->blue)
 			img->addr[y * img->size_line + x] = 255;
 		x++;
+//		printf("%i\n", img->green);
+//	printf("%u\n", x);
+//	printf("%u\n", y);
 		if (img->green)
 			img->addr[y * img->size_line + x] = 255;
 		x++;
@@ -45,7 +50,9 @@ void	line(t_env *e, t_coord *s)
 	i = 0;
 	while (i < lt.longueur)
 	{
+//		printf("BEF : %f et %f\n", lt.x, lt.y);
 		put_pixel_img(&e->img, lt.x, lt.y);
+//		printf("af\n");
 		lt.x += lt.dx;
 		lt.y += lt.dy;
 		i++;

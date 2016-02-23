@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/25 14:51:46 by fhuang            #+#    #+#             */
-/*   Updated: 2016/02/23 12:30:24 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/02/23 16:07:30 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int			main(int ac, char **av)
 		fd = open(av[1], O_RDONLY);
 		if (!(read_file(fd, &r)))
 			error_exit("INVALID FILE");
+		if ((close(fd) == -1))
+			error_exit("Close error");
 		start_env(&r);
 	}
 	else

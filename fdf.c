@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/25 15:58:25 by fhuang            #+#    #+#             */
-/*   Updated: 2016/02/23 12:23:56 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/02/23 19:02:51 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,14 @@ void	ortho(t_env *e)
 	t_coord		s;
 
 	j = 0;
+//	printf("N :%i\n", e->r->n_line);
 	while (j < e->r->n_line)
 	{
 		i = 0;
+//	printf("LEN :%i\n", e->r->len_line[j]);
 		while (i < e->r->len_line[j])
 		{
+			printf("%i\n", i);
 			if (i + 1 < e->r->len_line[j])
 				ortho_hor(e, &s, i, j);
 			if (j + 1 < e->r->n_line)
@@ -75,7 +78,9 @@ void	go(t_env *e)
 	e->img.addr = mlx_get_data_addr(e->img.img, &e->img.bpb, &e->img.size_line, &e->img.endian);
 //	print_data(e->r);
 	contour(e);
+//	printf("BEF\n");
 	e->projection == 1 ? ortho(e) : (iso(e));
+//	printf("BEF\n");
 	mlx_put_image_to_window(e->mlx, e->win, e->img.img, 0, 0);
 }
 
@@ -94,7 +99,9 @@ int		start_env(t_read *r)
 	e.ang.omega = OMEGA;
 	e.ang.alpha = ALPHA;
 	e.space = SPACE;
+//	printf("BEF\n");
 	go(&e);
+//	printf("AF\n");
 
 	mlx_hook(e.win, KEYPRESS, KEYPRESSMASK, keys, &e);
 	mlx_loop(e.mlx);

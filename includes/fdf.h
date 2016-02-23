@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/15 10:47:50 by fhuang            #+#    #+#             */
-/*   Updated: 2016/02/23 12:44:44 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/02/23 18:59:17 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define SIZE_X 1024
 # define SIZE_Y 1024
 # define WIDTH 1000
-# define HEIGHT 800
+# define HEIGHT 1000
 
 # define X 300
 # define Y 500
