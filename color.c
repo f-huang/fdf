@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/20 18:10:43 by fhuang            #+#    #+#             */
-/*   Updated: 2016/02/23 12:31:19 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/02/23 20:57:53 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ void		switch_colors(t_env *e, t_img *img)
 {
 	static int	i = 0;
 
-	i % 4 ? (img->blue = 1) : (img->blue = 0);
-	i % 2 ? img->green = 1 : (img->green = 0);
-	i % 7 ? img->red = 1 : (img->red = 0);
+	i % 2 ? (img->blue = 1) : (img->blue = 0);
+	i % 5 ? img->green = 1 : (img->green = 0);
+	i % 6 ? img->red = 1 : (img->red = 0);
 	i++;
 	if (i == 1)
 		img->blue = 1;

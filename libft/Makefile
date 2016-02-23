@@ -99,6 +99,7 @@ OBJ_PATH = ./OBJ/
 .PHONY: clean fclean re all
 
 $(NAME): $(OBJ)
+	@echo "----------------------------LIBFT----------------------------"
 	@$(CC) $(CFLAGS) $(SRC)
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)

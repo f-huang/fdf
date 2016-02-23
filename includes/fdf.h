@@ -59,8 +59,8 @@
 # define ROTATE_1 0.1
 # define ROTATE_2 0.1
 
-#define OMEGA (310 * (M_PI / 180))
-#define ALPHA (-40 * (M_PI / 180))
+#define OMEGA (343 * (M_PI / 180))
+#define ALPHA (622 * (M_PI / 180))
 
 # define KEYPRESS 2
 # define KEYPRESSMASK 1

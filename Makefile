@@ -44,8 +44,9 @@ OBJ_PATH = ./OBJ/
 all: $(NAME)
 
 $(NAME): $(OBJ)
+	@echo "----------------------------FDF----------------------------"
+	@$(MAKE) -C libft
 	@$(CC) $(OBJ) $(MLXFLAGS) $(LIBFT_PATH) -o $(NAME)
-	@$(MAKE) re -C libft
 
 $(OBJ_PATH)%.o : %.c
 	@echo "\033[1;32m" "Compiling $< into $@" "\033[0m"
