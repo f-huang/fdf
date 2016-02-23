@@ -6,7 +6,7 @@
 #    By: fhuang <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/27 16:52:41 by fhuang            #+#    #+#              #
-#    Updated: 2016/02/08 15:48:02 by fhuang           ###   ########.fr        #
+#    Updated: 2016/02/23 19:25:01 by fhuang           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,24 +90,28 @@ SRC = ft_memset.c	\
 	  ft_dynam_trim.c\
 	  get_next_line.c\
 
-OBJ = $(SRC:%.c=%.o)
-
-HEADER_PATH = -I ./includes/
-
 CFLAGS = -c -Wall -Wextra -Werror
 
-all: $(NAME)
+OBJ = $(addprefix $(OBJ_PATH), $(SRC:%.c=%.o))
 
-$(NAME):
-	@echo "\033[32mCompiling Libft..."
-	@$(CC) $(CFLAGS) $(HEADER_PATH) $(SRC)
+OBJ_PATH = ./OBJ/
+
+.PHONY: clean fclean re all
+
+$(NAME): $(OBJ)
+	@$(CC) $(CFLAGS) $(SRC)
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
 
+$(OBJ_PATH)%.o : %.c
+	@echo "\033[32m" "Compiling $< into $@" "\033[0m"
+	@mkdir -p $(OBJ_PATH)
+	@$(CC) $(CFLAGS) -c $< -o $@
+
 clean:
-	@rm -f $(OBJ)
+	@rm -rf $(OBJ_PATH) $(OBJ)
 
 fclean: clean
-	@rm -f $(NAME)
+	@rm -rf $(NAME)
 
 re: fclean all
