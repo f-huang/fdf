@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color.c                                            :+:      :+:    :+:   */
+/*   projection.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/02/20 18:10:43 by fhuang            #+#    #+#             */
-/*   Updated: 2016/02/23 12:31:19 by fhuang           ###   ########.fr       */
+/*   Created: 2016/02/23 11:08:36 by fhuang            #+#    #+#             */
+/*   Updated: 2016/02/23 11:10:43 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include "fdf.h"
 
-void		switch_colors(t_env *e, t_img *img)
+void	n_iso(t_env *e, t_img *img)
 {
-	static int	i = 0;
-
-	i % 4 ? (img->blue = 1) : (img->blue = 0);
-	i % 2 ? img->green = 1 : (img->green = 0);
-	i % 7 ? img->red = 1 : (img->red = 0);
-	i++;
-	if (i == 1)
-		img->blue = 1;
+	e->projection = 2;
 	mlx_clear_window(e->mlx, e->win);
-	mlx_destroy_image(e->mlx, e->img.img);
+	mlx_destroy_image(e->mlx, img->img);
+	go(e);
+}
+
+void	n_ortho(t_env *e, t_img *img)
+{
+	e->projection = 1;
+	mlx_clear_window(e->mlx, e->win);
+	mlx_destroy_image(e->mlx, img->img);
 	go(e);
 }

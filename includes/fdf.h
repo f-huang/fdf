@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/15 10:47:50 by fhuang            #+#    #+#             */
-/*   Updated: 2016/02/22 19:46:37 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/02/23 12:44:44 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 # include <math.h>
 # include "../libft/libft.h"
 
-#include "X.h"
 
 #include <stdio.h>
 
@@ -46,13 +45,13 @@
 # define KEY_D 2
 # define KEY_S 1
 # define KEY_A 0
-# define KEY_P 35
+# define KEY_I 34
+# define KEY_O 31
 # define KEY_SPACE 49
 # define BRACKET_1 33
 # define BRACKET_2 30
 # define COMA 43
 # define DOT 47
-
 
 # define SPACE 20
 # define RELIEF 5
@@ -62,6 +61,9 @@
 
 #define OMEGA (310 * (M_PI / 180))
 #define ALPHA (-40 * (M_PI / 180))
+
+# define KEYPRESS 2
+# define KEYPRESSMASK 1
 
 typedef struct			s_angle
 {
@@ -100,6 +102,7 @@ typedef struct			s_env
 	t_img	img;
 	t_read	*r;
 	t_angle	ang;
+	int		projection;
 	int		space;
 	int		posx;
 	int		posy;
@@ -113,6 +116,14 @@ typedef struct			s_coord
 	int		y2;
 }						t_coord;
 
+typedef struct			s_line_tools
+{
+	double	dx;
+	double	dy;
+	double	x;
+	double	y;
+	double	longueur;	
+}						t_line_tools;
 
 int						print_data(t_read *r);
 
@@ -120,13 +131,16 @@ int						print_data(t_read *r);
 ** MLX
 */
 
+void					ortho(t_env *e);
+void					iso(t_env *e);
+void					n_ortho(t_env *e, t_img *img);
+void					n_iso(t_env *e, t_img *img);
 int						read_file(int fd, t_read *r);
 int						start_env(t_read *r);
-void					dot_at_dot(t_env *e);//, t_img *img);
-void					exit_key(t_env *e, t_img *img);
-int						keys(int keycode, t_env *e);
-void					error_exit(char *str);
 void					go(t_env *e);
+int						keys(int keycode, t_env *e);
+void					exit_key(t_env *e, t_img *img);
+void					error_exit(char *str);
 
 /*
 ** LINE
@@ -142,7 +156,7 @@ void					line(t_env *e, t_coord *s);
 void					switch_colors(t_env *env, t_img *img);
 
 /*
-** PARALLELES
+** CALCUL
 */
 
 void					ortho_hor(t_env *e, t_coord *s, int i, int j);
@@ -182,4 +196,5 @@ void					rotate_w(t_env *e, t_img *img);
 void					rotate_s(t_env *e, t_img *img);
 void					rotate_a(t_env *e, t_img *img);
 void					rotate_d(t_env *e, t_img *img);
+
 #endif

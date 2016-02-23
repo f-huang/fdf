@@ -6,7 +6,7 @@
 #    By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/01/11 11:38:13 by fhuang            #+#    #+#              #
-#    Updated: 2016/02/22 16:03:46 by fhuang           ###   ########.fr        #
+#    Updated: 2016/02/23 11:12:42 by fhuang           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,8 +26,9 @@ SRC = main.c			\
 	  rotate.c			\
 	  translation.c		\
 	  zoom.c			\
-	  angles.c			\
-	  brackets.c		\
+	  calcul.c			\
+	  relief.c			\
+	  projection.c		\
 	  color.c
 
 OBJ = $(addprefix $(OBJ_PATH),$(SRC:%.c=%.o))
