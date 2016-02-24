@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/15 10:47:50 by fhuang            #+#    #+#             */
-/*   Updated: 2016/02/23 18:59:17 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/02/24 11:54:33 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,6 @@
 # include <string.h>
 # include <math.h>
 # include "../libft/libft.h"
-
-
-#include <stdio.h>
 
 # define SIZE_X 1024
 # define SIZE_Y 1024
@@ -59,8 +56,8 @@
 # define ROTATE_1 0.1
 # define ROTATE_2 0.1
 
-#define OMEGA (343 * (M_PI / 180))
-#define ALPHA (622 * (M_PI / 180))
+# define OMEGA (343 * (M_PI / 180))
+# define ALPHA (622 * (M_PI / 180))
 
 # define KEYPRESS 2
 # define KEYPRESSMASK 1
@@ -87,7 +84,7 @@ typedef struct			s_img
 {
 	void	*img;
 	char	*addr;
-	int		bpb;
+	int		bpp;
 	int		size_line;
 	int		endian;
 	int		blue;
@@ -122,25 +119,28 @@ typedef struct			s_line_tools
 	double	dy;
 	double	x;
 	double	y;
-	double	longueur;	
+	double	longueur;
 }						t_line_tools;
-
-int						print_data(t_read *r);
 
 /*
 ** MLX
 */
 
-void					ortho(t_env *e);
-void					iso(t_env *e);
-void					n_ortho(t_env *e, t_img *img);
-void					n_iso(t_env *e, t_img *img);
 int						read_file(int fd, t_read *r);
 int						start_env(t_read *r);
 void					go(t_env *e);
 int						keys(int keycode, t_env *e);
 void					exit_key(t_env *e, t_img *img);
 void					error_exit(char *str);
+
+/*
+** PROJECTION
+*/
+
+void					ortho(t_env *e);
+void					iso(t_env *e);
+void					n_ortho(t_env *e, t_img *img);
+void					n_iso(t_env *e, t_img *img);
 
 /*
 ** LINE
@@ -163,7 +163,6 @@ void					ortho_hor(t_env *e, t_coord *s, int i, int j);
 void					ortho_ver(t_env *e, t_coord *s, int i, int j);
 void					iso_hor(t_env *e, t_coord *s, int i, int j);
 void					iso_ver(t_env *e, t_coord *s, int i, int j);
-
 
 /*
 ** TRANSLATION

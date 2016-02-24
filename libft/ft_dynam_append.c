@@ -5,39 +5,38 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fhuang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/04 21:44:48 by fhuang            #+#    #+#             */
-/*   Updated: 2015/12/11 16:13:33 by fhuang           ###   ########.fr       */
+/*   Created: 2016/02/24 12:00:55 by fhuang            #+#    #+#             */
+/*   Updated: 2016/02/24 12:01:01 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_dynam_append(t_dynam *dynam, void *new_data, size_t nb_data)
+int		ft_dynam_append(t_dynam *dyn, void *new_d, size_t nb)
 {
 	size_t	mult;
 	void	*tmp;
 
-	if (dynam->data == NULL)
+	if (dyn->data == NULL)
 	{
-		if (!(dynam->data = malloc(dynam->type_size * nb_data)))
+		if (!(dyn->data = malloc(dyn->t_size * nb)))
 			return (1);
-		dynam->max_elem = nb_data;
-		dynam->nb_elem = 0;
+		dyn->max_elem = nb;
+		dyn->nb_elem = 0;
 	}
 	mult = 1;
-	while (nb_data + dynam->nb_elem > mult * dynam->max_elem)
+	while (nb + dyn->nb_elem > mult * dyn->max_elem)
 		mult *= 2;
 	if (mult > 1)
 	{
-		dynam->max_elem *= mult;
-		if (!(tmp = malloc(dynam->max_elem * dynam->type_size)))
+		dyn->max_elem *= mult;
+		if (!(tmp = malloc(dyn->max_elem * dyn->t_size)))
 			return (1);
-		ft_memcpy(tmp, dynam->data, (dynam->nb_elem * dynam->type_size));
-		free(dynam->data);
-		dynam->data = tmp;
+		ft_memcpy(tmp, dyn->data, (dyn->nb_elem * dyn->t_size));
+		free(dyn->data);
+		dyn->data = tmp;
 	}
-	ft_memcpy(dynam->data + dynam->nb_elem * dynam->type_size,
-			new_data, nb_data * dynam->type_size);
-	dynam->nb_elem += nb_data;
+	ft_memcpy(dyn->data + dyn->nb_elem * dyn->t_size, new_d, nb * dyn->t_size);
+	dyn->nb_elem += nb;
 	return (0);
 }

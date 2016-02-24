@@ -6,7 +6,7 @@
 #    By: fhuang <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/27 16:52:41 by fhuang            #+#    #+#              #
-#    Updated: 2016/02/23 19:25:01 by fhuang           ###   ########.fr        #
+#    Updated: 2016/02/24 12:16:57 by fhuang           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -98,9 +98,10 @@ OBJ_PATH = ./OBJ/
 
 .PHONY: clean fclean re all
 
+all : $(NAME)
+
 $(NAME): $(OBJ)
 	@echo "----------------------------LIBFT----------------------------"
-	@$(CC) $(CFLAGS) $(SRC)
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
 
@@ -110,7 +111,8 @@ $(OBJ_PATH)%.o : %.c
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	@rm -rf $(OBJ_PATH) $(OBJ)
+	@rm -rf $(OBJ_PATH)
+	@rm -rf $(OBJ)
 
 fclean: clean
 	@rm -rf $(NAME)

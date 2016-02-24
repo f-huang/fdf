@@ -6,7 +6,7 @@
 /*   By: fhuang <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/23 11:48:08 by fhuang            #+#    #+#             */
-/*   Updated: 2016/02/08 18:09:15 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/02/24 11:57:57 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int				get_next_line(int const fd, char **line);
 typedef struct	s_dynam
 {
 	void	*data;
-	size_t	type_size;
+	size_t	t_size;
 	size_t	max_elem;
 	size_t	nb_elem;
 }				t_dynam;

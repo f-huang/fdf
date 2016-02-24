@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/12 18:48:51 by fhuang            #+#    #+#             */
-/*   Updated: 2016/02/23 12:29:58 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/02/24 12:56:19 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	relief_plus(t_env *e, t_img *img)
 			{
 				e->r->data[j][i] += RELIEF;
 				if (e->r->data[j][i] == 0)
-					e->r->data[j][i] += RELIEF;
+					e->r->data[j][i] += 2;
 			}
 			i++;
 		}
@@ -53,7 +53,7 @@ void	relief_minus(t_env *e, t_img *img)
 			{
 				e->r->data[j][i] -= RELIEF;
 				if (e->r->data[j][i] == 0)
-					e->r->data[j][i] -= RELIEF;
+					e->r->data[j][i] -= 2;
 			}
 			i++;
 		}

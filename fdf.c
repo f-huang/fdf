@@ -6,7 +6,7 @@
 /*   By: fhuang <fhuang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/25 15:58:25 by fhuang            #+#    #+#             */
-/*   Updated: 2016/02/23 20:59:58 by fhuang           ###   ########.fr       */
+/*   Updated: 2016/02/24 11:53:34 by fhuang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,24 +56,12 @@ void	iso(t_env *e)
 	}
 }
 
-void	contour(t_env *e)
-{
-	for (int i = 0; i < (&e->img)->size_line; i+=4)
-		(&e->img)->addr[i] = 255;
-	for (int i = 0; i < HEIGHT - 1; i++)
-		(&e->img)->addr[(&e->img)->size_line * i] = 255;
-	for (int i = 0; i < HEIGHT - 1; i++)
-		(&e->img)->addr[(&e->img)->size_line * i + (&e->img)->size_line - 4] = 255;
-	for (int j = 0; j < (&e->img)->size_line; j+=4)
-		(&e->img)->addr[((HEIGHT - 1) * (&e->img)->size_line) + j] = 255;
-}
-
 void	go(t_env *e)
 {
-	if (!(e->img.img = mlx_new_image(e->mlx, WIDTH + e->r->i, HEIGHT + e->r->i++)))
+	if (!(e->img.img = mlx_new_image(e->mlx, WIDTH, HEIGHT)))
 		error_exit("New image error");
-	e->img.addr = mlx_get_data_addr(e->img.img, &e->img.bpb, &e->img.size_line, &e->img.endian);
-	contour(e);
+	e->img.addr = mlx_get_data_addr(e->img.img, &e->img.bpp,\
+			&e->img.size_line, &e->img.endian);
 	e->projection == 1 ? ortho(e) : (iso(e));
 	mlx_put_image_to_window(e->mlx, e->win, e->img.img, 0, 0);
 }
